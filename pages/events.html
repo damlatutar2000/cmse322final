@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Events</title>
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        />
+        <link rel="stylesheet" href="../styles/styles.css" />
+        <script src="../scripts/menu.js" defer></script>
+        <style></style>
+    </head>
+    <body>
+        <header>
+            <div class="title">
+                <img
+                    class="logo"
+                    src="../assets/logo.png"
+                    alt="Famagusta Municipality Logo"
+                    height="50"
+                />
+                <a href="../index.html"
+                    ><h1>Famagusta <br />Municipality</h1></a
+                >
+            </div>
+
+            <nav id="menu">
+                <button class="nav-btn" onclick="closeMenu()">
+                    <span class="material-symbols-outlined"> close </span>
+                </button>
+                <a href="./events.html">Events</a>
+                <a href="#">About</a>
+                <a href="#">Projects</a>
+                <a href="./news.html">News</a>
+                <a href="./services.html">Services</a>
+                <a href="./contact.html">Contact</a>
+                <a class="eng-button">
+                    <span class="material-symbols-outlined"> language </span>
+                    ENG
+                </a>
+            </nav>
+            <button class="nav-btn" onclick="showMenu()">
+                <span class="material-symbols-outlined"> menu </span>
+            </button>
+        </header>
+        <div class="slides-container">
+            <div class="slides">
+                <div class="col">
+                    <img src="" id="events-image" alt="" />
+                </div>
+                <div class="col" id="image-cont">
+                    <div class="slides-content">
+                        <h2 id="events-title"></h2>
+                        <p id="events-desc"></p>
+                        <a id="events-link" href="#"> learn more </a>
+                    </div>
+                    <div class="controls">
+                        <button onclick="previous()" class="nav-button">
+                            <span class="material-symbols-outlined">
+                                arrow_back
+                            </span>
+                        </button>
+                        <button onclick="next()" class="nav-button">
+                            <span class="material-symbols-outlined">
+                                arrow_forward
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="chat-button">
+            <span class="material-symbols-outlined"> support_agent </span>
+        </button>
+    </body>
+</html>
+<script defer>
+    current = 0;
+    const events = [
+        {
+            title: "Taste of Famagusta",
+            description:
+                "Join us for a culinary adventure at the annual Taste of Famagusta Food Festival! Explore a variety of local and international cuisines, from traditional Cypriot dishes to exotic flavors. Enjoy live cooking demonstrations, food stalls, and music. Don’t miss this gastronomic delight!",
+            image: "../assets/food-fest.jpeg",
+            link: "#",
+        },
+        {
+            title: "Famagusta Marathon",
+            description:
+                "Lace up your running shoes and participate in the Unfinished Famagusta Marathon! This scenic race starts in Larnaca and ends in Deryneia, passing through beautiful coastal areas. Whether you’re a seasoned runner or a beginner, this event is perfect for fitness enthusiasts. Join us for a healthy challenge!",
+            image: "../assets/marathon.jpeg",
+            link: "#",
+        },
+        {
+            title: "Harmony Nights",
+            description:
+                "Experience the magic of live music at Harmony Nights! This open-air concert features talented local and international artists. From classical melodies to contemporary hits, the Famagusta Amphitheatre will come alive with captivating performances. Grab your tickets and enjoy an unforgettable evening under the stars!",
+            image: "../assets/concert.jpeg",
+            link: "#",
+        },
+    ];
+
+    function render() {
+        const title = document.getElementById("events-title");
+        const description = document.getElementById("events-desc");
+        const link = document.getElementById("events-link");
+        const image = document.getElementById("events-image");
+        title.innerHTML = events[current].title;
+        description.innerHTML = events[current].description;
+        link.href = events[current].link;
+        image.src = events[current].image;
+    }
+
+    render();
+    function next() {
+        current = current + 1;
+        if (current === events.length) {
+            current = 0;
+        }
+        render();
+    }
+    function previous() {
+        current = (current - 1) % events.length;
+        if (current === -1) {
+            current = events.length - 1;
+        }
+        render();
+    }
+</script>

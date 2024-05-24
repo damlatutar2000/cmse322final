@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>News</title>
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        />
+        <link rel="stylesheet" href="../styles/styles.css" />
+        <script src="../scripts/menu.js" defer></script>
+        <style></style>
+    </head>
+    <body>
+        <header>
+            <div class="title">
+                <img
+                    class="logo"
+                    src="../assets/logo.png"
+                    alt="Famagusta Municipality Logo"
+                    height="50"
+                />
+                <a href="../index.html"
+                    ><h1>Famagusta <br />Municipality</h1></a
+                >
+            </div>
+
+            <nav id="menu">
+                <button class="nav-btn" onclick="closeMenu()">
+                    <span class="material-symbols-outlined"> close </span>
+                </button>
+                <a href="./events.html">Events</a>
+                <a href="#">About</a>
+                <a href="#">Projects</a>
+                <a href="./news.html">News</a>
+                <a href="./services.html">Services</a>
+                <a href="./contact.html">Contact</a>
+                <a class="eng-button">
+                    <span class="material-symbols-outlined"> language </span>
+                    ENG
+                </a>
+            </nav>
+            <button class="nav-btn" onclick="showMenu()">
+                <span class="material-symbols-outlined"> menu </span>
+            </button>
+        </header>
+        <div class="slides-container">
+            <div class="slides">
+                <div class="col">
+                    <img src="" id="news-image" alt="" />
+                </div>
+                <div class="col" id="image-cont">
+                    <div class="slides-content">
+                        <h2 id="news-title"></h2>
+                        <p id="news-desc"></p>
+                        <a id="news-link" href="#"> learn more </a>
+                    </div>
+                    <div class="controls">
+                        <button onclick="previous()" class="nav-button">
+                            <span class="material-symbols-outlined">
+                                arrow_back
+                            </span>
+                        </button>
+                        <button onclick="next()" class="nav-button">
+                            <span class="material-symbols-outlined">
+                                arrow_forward
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="chat-button">
+            <span class="material-symbols-outlined"> support_agent </span>
+        </button>
+    </body>
+</html>
+<script defer>
+    current = 0;
+    const news = [
+        {
+            title: "PYGMALION",
+            description:
+                'Famagusta Municipality brings PYGMALION "A Democracy Musical" presented by Kyrenia Theater-Su to the Famagusta audience.',
+            image: "../assets/pygmalion.jpeg",
+            link: "#",
+        },
+    ];
+
+    function render() {
+        const title = document.getElementById("news-title");
+        const description = document.getElementById("news-desc");
+        const link = document.getElementById("news-link");
+        const image = document.getElementById("news-image");
+        title.innerHTML = news[current].title;
+        description.innerHTML = news[current].description;
+        link.href = news[current].link;
+        image.src = news[current].image;
+    }
+
+    render();
+    function next() {
+        current = current + 1;
+        if (current === news.length) {
+            current = 0;
+        }
+        render();
+    }
+    function previous() {
+        current = (current - 1) % news.length;
+        if (current === -1) {
+            current = news.length - 1;
+        }
+        render();
+    }
+</script>
